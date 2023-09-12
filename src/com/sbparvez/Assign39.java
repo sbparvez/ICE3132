@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 public class Assign39 {
     public static void main(String[] args) {
@@ -27,10 +28,18 @@ public class Assign39 {
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                double fahrenheit = Double.parseDouble(faren.getText());
-                double cels = (fahrenheit - 32) * 5 / 9;
-                celsius.setText(String.format("%.2f", cels));
+                if(!Objects.equals(celsius.getText(), "")){
+                    double cel = Double.parseDouble(celsius.getText());
+                    double far = (cel/5.0)*9 + 32;
+                    faren.setText(String.format("%.4f", far));
+                }
+                else if(!Objects.equals(faren.getText(), "")) {
+                    double fahrenheit = Double.parseDouble(faren.getText());
+                    double cels = (fahrenheit - 32) * 5 / 9;
+                    celsius.setText(String.format("%.4f", cels));
+                }
             }
+
         });
 
         panel.add(label1);
